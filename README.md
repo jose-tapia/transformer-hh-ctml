@@ -1,13 +1,43 @@
+# Final Project for Computational Techniques in Machine Learning
+
+This repository contains the resulting datasets of the work entitled **Hyper-Heuristic based on Transformers for Solving Continuous Optimisation Problems**. It also include the main jupyter file to plot the figures thereby presented.
+
+Team: José M. Tapia-Avitia, A00834191
+
+## Important
+
+Due to the file size limitation of GitHub, it is comprised the dataset of metahueristics used to create the training dataset for the Transformers models. It is comprised as well the folder with the results of the experiments. 
+
+
+## Requirements
+- Python v3.7+
+- [CUSTOMHyS framework](https://github.com/jcrvz/customhys.git)
+- Standard modules: os, matplotlib, numpy, pandas, scipy.stats, seaborn, tensorflow, transformers
+
+## Files
+- **Main figures notebook**: [HyBert-Heuristic.ipynb](./HyBert-Heuristic.ipynb)
+- Sample of metaheuristics for create the training dataset (_this folder will be available once unzip the file_): [stored_sequences/](./stored_sequences)
+- Results from the proposed approaches (_this folder will be available once unzip the file_): [transformer_experiments/](./transformer_experiments)
+- Collection of default heuristics: [collections/default.txt](./collections/default.txt)
+
+## Contact information
+
+José M. Tapia-Avitia - [A00834191@tec.mx](mailto:A00834191@tec.mx)
+
+
+Distributed under the MIT license. See [LICENSE](./LICENSE) for more information.
+
+
 # customhys
 
 <img align="left" src="./docfiles/chm_logo.png?raw=true" width="200"/>
 
-**Customising optimisation metaheuristics via hyper-heuristic search** (CUSTOMHyS). This framework provides tools for solving, but not limited to, continuous optimisation problems using a hyper-heuristic approach for customising metaheuristics. Such an approach is powered by a strategy based on Simulated Annealing. Also, several search operators serve as building blocks for tailoring metaheuristics. They were extracted from ten well-known metaheuristics in the literature.
+**Customising optimisation metaheuristics via hyper-heuristic search** (CUSTOMHyS). This framework provides tools for solving, but not limited to, continuous optimisation problems using a hyper-heuristic approach for customising metaheuristics. It contains several approaches that are powered by a strategy based on Simulated Annealing, Artificial Neural Network, or Transformers. Also, several search operators serve as building blocks for tailoring metaheuristics. They were extracted from ten well-known metaheuristics in the literature.
 
 Detailed information about this framework can be found in [1, 2]. Plus, the code for each module is well-documented.
 
 ### 🛠 Requirements:
-Python 3.7 and higher. Packages: NumPy 1.18.5, SciPy 1.5.0, Matplotlib 3.2.2, json 2.0.9, tqdm 4.47.0.
+Python 3.7 and higher. Packages: NumPy 1.18.5, SciPy 1.5.0, Matplotlib 3.2.2, json 2.0.9, tqdm 4.47.0, transformers 4.17.0.
 
 ## 🧰 Modules
 
@@ -59,109 +89,13 @@ This module contains several functions and methods utilised by many modules in t
 
 Source: [``tools.py``](./tools.py)
 
-### 💾 Data Structure
+### 🧠 Neural Networks
 
-The experiments are saved in JSON files. The data structure of a saved file follows a particular scheme described below.
+This module contains the implementation of neural network models, as well as several methods utilised by for it correct utilisation. It contains the transformers models as well.
 
-<details>
-<summary> Expand structure </summary>
-<p>
+Source: [``tools.py``](./tools.py)
 
-```
-data_frame = {dict: N}
-|-- 'problem' = {list: N}
-|  |-- 0 = {str}
-:  :
-|-- 'dimensions' = {list: N}
-|  |-- 0 = {int}
-:  :
-|-- 'results' = {list: N}
-|  |-- 0 = {dict: 6}
-|  |  |-- 'iteration' = {list: M}   
-|  |  |  |-- 0 = {int}
-:  :  :  :
-|  |  |-- 'time' = {list: M}
-|  |  |  |-- 0 = {float}
-:  :  :  :
-|  |  |-- 'performance' = {list: M}
-|  |  |  |-- 0 = {float}
-:  :  :  :
-|  |  |-- 'encoded_solution' = {list: M}
-|  |  |  |-- 0 = {int}
-:  :  :  :
-|  |  |-- 'solution' = {list: M}
-|  |  |  |-- 0 = {list: C}
-|  |  |  |  |-- 0 = {list: 3}
-|  |  |  |  |  |-- search_operator_structure
-:  :  :  :  :  :
-|  |  |-- 'details' = {list: M}
-|  |  |  |-- 0 = {dict: 4}
-|  |  |  |  |-- 'fitness' = {list: R}
-|  |  |  |  |  |-- 0 = {float}
-:  :  :  :  :  :
-|  |  |  |  |-- 'positions' = {list: R}
-|  |  |  |  |  |-- 0 = {list: D}
-|  |  |  |  |  |  |-- 0 = {float}
-:  :  :  :  :  :  :
-|  |  |  |  |-- 'historical' = {list: R}
-|  |  |  |  |  |-- 0 = {dict: 5}
-|  |  |  |  |  |  |-- 'fitness' = {list: I}
-|  |  |  |  |  |  |  |-- 0 = {float}
-:  :  :  :  :  :  :  :
-|  |  |  |  |  |  |-- 'positions' = {list: I}
-|  |  |  |  |  |  |  |-- 0 = {list: D}
-|  |  |  |  |  |  |  |  |-- 0 = {float}
-:  :  :  :  :  :  :  :  :
-|  |  |  |  |  |  |-- 'centroid' = {list: I}
-|  |  |  |  |  |  |  |-- 0 = {list: D}
-|  |  |  |  |  |  |  |  |-- 0 = {float}
-:  :  :  :  :  :  :  :  :
-|  |  |  |  |  |  |-- 'radius' = {list: I}
-|  |  |  |  |  |  |  |-- 0 = {float}
-:  :  :  :  :  :  :  :
-|  |  |  |  |  |  |-- 'stagnation' = {list: I}
-|  |  |  |  |  |  |  |-- 0 = {int}
-:  :  :  :  :  :  :  :
-|  |  |  |  |-- 'statistics' = {dict: 10}
-|  |  |  |  |  |-- 'nob' = {int}
-|  |  |  |  |  |-- 'Min' = {float}
-|  |  |  |  |  |-- 'Max' = {float}
-|  |  |  |  |  |-- 'Avg' = {float}
-|  |  |  |  |  |-- 'Std' = {float}
-|  |  |  |  |  |-- 'Skw' = {float}
-|  |  |  |  |  |-- 'Kur' = {float}
-|  |  |  |  |  |-- 'IQR' = {float}
-|  |  |  |  |  |-- 'Med' = {float}
-|  |  |  |  |  |-- 'MAD' = {float}
-:  :  :  :  :  :
-```
-where:
-- ```N``` is the number of files within data_files folder
-- ```M``` is the number of hyper-heuristic iterations (metaheuristic candidates)
-- ```C``` is the number of search operators in the metaheuristic (cardinality)
-- ```P``` is the number of control parameters for each search operator
-- ```R``` is the number of repetitions performed for each metaheuristic candidate
-- ```D``` is the dimensionality of the problem tackled by the metaheuristic candidate
-- ```I``` is the number of iterations performed by the metaheuristic candidate
-- ```search_operator_structure``` corresponds to ```[operator_name = {str}, control_parameters = {dict: P}, selector = {str}]```
-</p>
-</details>
 
-## 🏗️ Work-in-Progress
-
-The following modules are available, but they may do not work. They are currently under developing.
-
-### 🌡️ Characterisation
-
-This module intends to provide metrics for characterising the benchmark functions.
-
-Source: [``characterisation.py``](./characterisation.py)
-
-### 📊 Visualisation
-
-This module intends to provide several tools for plotting results from the experiments.
-
-Source: [``visualisation.py``](./visualisation.py)
 
 ## Sponsors
 
