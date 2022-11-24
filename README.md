@@ -15,6 +15,7 @@ Due to the file size limitation of GitHub, it is comprised the dataset of metahu
 - Standard modules: os, matplotlib, numpy, pandas, scipy.stats, seaborn, tensorflow, transformers
 
 ## Files
+- **Report of project**: This document summarise and bring enough context to understand the project and the codebase [Final report](CTML_Final_Project_Report_A00834191.pdf)
 - **Main figures notebook**: [HyBert-Heuristic.ipynb](./HyBert-Heuristic.ipynb)
 - Sample of metaheuristics for create the training dataset (_this folder will be available once unzip the file_): [stored_sequences/](./stored_sequences)
 - Results from the proposed approaches (_this folder will be available once unzip the file_): [transformer_experiments/](./transformer_experiments)
